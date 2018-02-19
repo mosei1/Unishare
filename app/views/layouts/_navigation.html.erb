@@ -1,6 +1,6 @@
 <h1>Unishare</h1>
 <% if user_signed_in? %>
-
+  <%= link_to 'View Profile', view_profile_path(current_user) %>
   <%= link_to "Sign_Out", destroy_user_session_path, method: 'delete'%>
 
 <% else %>

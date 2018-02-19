@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Driver's license</strong>
+  <%= @user.drivers_license %>
+</p>
+
+<%= link_to 'Edit Profile', edit_user_registration_path %> |
+<%= link_to 'Back', rides_path %>

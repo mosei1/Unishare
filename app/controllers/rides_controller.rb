@@ -14,7 +14,11 @@ class RidesController < ApplicationController
 
   # GET /rides/new
   def new
-    @ride = Ride.new
+    @user = current_user
+    unless @user.drivers_license.present? and @user.car_make.present? and @user.car_model.present? and @user.car_color.present?
+      redirect_to rides_path, notice: 'You cannot create a ride without filling the required fields!'
+    end
+    @ride = Ride.new user_id:@user.id
   end
 
   # GET /rides/1/edit
@@ -69,6 +73,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:seats, :destination, :pickup, :departure, :arrival)
+      params.require(:ride).permit(:user_id, :seats, :destination, :pickup, :departure, :arrival)
     end
 end

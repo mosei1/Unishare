@@ -4,9 +4,35 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
   </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :drivers_license %><br />
+    <%= f.text_field :drivers_license %>
+  </div>
+
+  <div class="field">
+    <%= f.label :car_make %><br />
+    <%= f.text_field :car_make%>
+  </div>
+
+  <div class="field">
+    <%= f.label :car_model %><br />
+    <%= f.text_field :car_model%>
+  </div>
+
+  <div class="field">
+    <%= f.label :car_color %><br />
+    <%= f.text_field :car_color%>
+  </div>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

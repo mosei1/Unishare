@@ -64,6 +64,13 @@ class RidesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # Adding user to ride
+  def join_ride
+    @ride = Ride.find(params[:ride])
+    @ride.users << current_user
+
+    redirect_to @ride, notice: "You have successfully joined this ride"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

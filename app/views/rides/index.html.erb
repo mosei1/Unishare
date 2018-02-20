@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Driver</th>
-      <th>Seats</th>
+      <th>Seats Available</th>
       <th>Destination</th>
       <th>Pickup</th>
       <th>Departure</th>
@@ -24,16 +24,20 @@
         <td><%= ride.pickup %></td>
         <td><%= ride.departure %></td>
         <td><%= ride.arrival %></td>
+
         <td><%= link_to 'View Ride', ride %></td>
-        <% if current_user == ride.user %>
-        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+        <% if user_signed_in?  and !ride.users.include?(current_user) and ride.user != current_user %>
+           <td><%= link_to 'Join Ride', join_ride_path(ride), method: :post %></td>
+        <% end %>
+        <% if user_signed_in?  and ride.user == current_user %>
+          <td><%= link_to 'Delete', ride, method: :delete %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
+<br/>
+<% if user_signed_in? and current_user.drivers_license.present? %>
 <%= link_to 'New Ride', new_ride_path %>
+<% end %>
